@@ -13,8 +13,10 @@ export default function IndexPage({ data }: PageProps<Queries.StickersQuery>) {
             image={getImage(sticker.preview?.gatsbyImageData!)!}
             alt={sticker.name!}
           />
-          <h2>{sticker.name}</h2>
-          <h4>${sticker.price}</h4>
+          <Link to={`/products/${sticker.id}`}>
+            <h2>{sticker.name}</h2>
+            <h4>${sticker.price}</h4>
+          </Link>
         </article>
       ))}
     </Layout>
@@ -25,6 +27,7 @@ export const query = graphql`
   query Stickers {
     allContentfulStickerPack {
       nodes {
+				id
         price
         name
         preview {
